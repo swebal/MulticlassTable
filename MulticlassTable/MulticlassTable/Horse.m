@@ -21,6 +21,14 @@
     return h;
 }
 
+- (id)initWithDictionary:(NSDictionary *)data {
+    self = [super init];
+    if (self) {
+        self.horseName = data[@"horseName"]; // Samma som att ropa på [data objectForKey:@"horseName"];
+        self.horseStatus = [data[@"horseStatus"] intValue];
+    }
+    return self;
+}
 
 - (NSDictionary *)dictionaryFromObject {
     return @{@"horseName":_horseName, @"horseStatus":@(_horseStatus)};

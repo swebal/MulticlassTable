@@ -9,6 +9,7 @@
 #import "MulticlassTableViewController.h"
 #import "BrownTableViewCell.h"
 #import "Horse.h"
+#import "DetailViewController.h"
 
 @interface MulticlassTableViewController ()
 
@@ -20,12 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.horses = [NSMutableArray new];
-    for (int i=0; i<1000; i++) {
-        Horse *h = [Horse randomHorse];
-        [_horses addObject:h];
+    if ([self loadHorses]) {
+        [self saveHorses];
     }
+}
+
+- (void)saveHorses {
     
     // Man kan bara spara följande typer i NSUserDefaults:
     // NSNumber, NSArray, NSString, NSData, NSDictionary, NSDate
@@ -38,6 +39,25 @@
     }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:horseDictionaries forKey:@"horseDataArray"];
+}
+
+- (BOOL)loadHorses {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *savedHorses = [defaults arrayForKey:@"horseDataArray"];
+    self.horses = [NSMutableArray new];
+    if (savedHorses) {
+        for (NSDictionary *horseData in savedHorses) {
+            Horse *h = [[Horse alloc] initWithDictionary:horseData]; // nåt med att parsa data...
+            [_horses addObject:h];
+        }
+        return false;
+    } else {
+        for (int i=0; i<100; i++) {
+            Horse *h = [Horse randomHorse];
+            [_horses addObject:h];
+        }
+        return true;
+    }
 }
 
 #pragma mark - Table view data source
@@ -58,6 +78,14 @@
     [cell configureWithHorse:h];
     
     return cell;
+}
+
+#pragma mark - Prepare for transition
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    DetailViewController *detail = (DetailViewController *)segue.destinationViewController;
+    detail.selectedHorse = _horses[selectedIndexPath.row];
 }
 
 @end

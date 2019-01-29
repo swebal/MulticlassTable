@@ -15,6 +15,7 @@
 		28FDAA3E220056F5005FE326 /* MulticlassTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA3D220056F5005FE326 /* MulticlassTableViewController.m */; };
 		28FDAA4122005ABC005FE326 /* BrownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA4022005ABC005FE326 /* BrownTableViewCell.m */; };
 		28FDAA4422007E15005FE326 /* Horse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA4322007E15005FE326 /* Horse.m */; };
+		28FDAA4722009E27005FE326 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA4622009E27005FE326 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		28FDAA4022005ABC005FE326 /* BrownTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrownTableViewCell.m; sourceTree = "<group>"; };
 		28FDAA4222007E15005FE326 /* Horse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Horse.h; sourceTree = "<group>"; };
 		28FDAA4322007E15005FE326 /* Horse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Horse.m; sourceTree = "<group>"; };
+		28FDAA4522009E27005FE326 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		28FDAA4622009E27005FE326 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,8 @@
 				28FDAA3122005671005FE326 /* LaunchScreen.storyboard */,
 				28FDAA3522005671005FE326 /* main.m */,
 				28FDAA2C2200566B005FE326 /* Main.storyboard */,
+				28FDAA4522009E27005FE326 /* DetailViewController.h */,
+				28FDAA4622009E27005FE326 /* DetailViewController.m */,
 				28FDAA4222007E15005FE326 /* Horse.h */,
 				28FDAA4322007E15005FE326 /* Horse.m */,
 				28FDAA3C220056F5005FE326 /* MulticlassTableViewController.h */,
@@ -156,6 +161,7 @@
 				28FDAA3E220056F5005FE326 /* MulticlassTableViewController.m in Sources */,
 				28FDAA4122005ABC005FE326 /* BrownTableViewCell.m in Sources */,
 				28FDAA282200566B005FE326 /* AppDelegate.m in Sources */,
+				28FDAA4722009E27005FE326 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

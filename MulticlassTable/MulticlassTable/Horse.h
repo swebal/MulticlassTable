@@ -19,6 +19,7 @@ typedef enum {
 @property (nonatomic, strong) NSString *horseName; // Objekt (glöm ej "strong" och *
 
 + (Horse *)randomHorse;
+- (id)initWithDictionary:(NSDictionary *)data;
 - (NSDictionary *)dictionaryFromObject;
 
 @end
