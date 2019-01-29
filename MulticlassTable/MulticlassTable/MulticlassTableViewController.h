@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MulticlassTableViewController.h
 //  MulticlassTable
 //
 //  Created by Markus on 2019-01-29.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MulticlassTableViewController : UITableViewController
 
 @end
-
