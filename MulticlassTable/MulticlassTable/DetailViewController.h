@@ -11,7 +11,10 @@
 
 @interface DetailViewController : UIViewController
 
+// Egen property som vi sätter från tabellen
 @property (strong, nonatomic) Horse *selectedHorse;
+
+// Outlets som vi skapade i Interface Builder
 @property (weak, nonatomic) IBOutlet UILabel *horseNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusView;
 

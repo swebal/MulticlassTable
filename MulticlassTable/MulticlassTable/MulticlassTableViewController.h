@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MulticlassTableViewController : UITableViewController
+@interface MulticlassTableViewController : UITableViewController 
 
 @end

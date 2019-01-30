@@ -16,6 +16,7 @@
 		28FDAA4122005ABC005FE326 /* BrownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA4022005ABC005FE326 /* BrownTableViewCell.m */; };
 		28FDAA4422007E15005FE326 /* Horse.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA4322007E15005FE326 /* Horse.m */; };
 		28FDAA4722009E27005FE326 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA4622009E27005FE326 /* DetailViewController.m */; };
+		28FDAA4A2201A588005FE326 /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FDAA492201A588005FE326 /* SwitchTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		28FDAA4322007E15005FE326 /* Horse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Horse.m; sourceTree = "<group>"; };
 		28FDAA4522009E27005FE326 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		28FDAA4622009E27005FE326 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		28FDAA482201A588005FE326 /* SwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
+		28FDAA492201A588005FE326 /* SwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,18 +73,20 @@
 				28FDAA262200566B005FE326 /* AppDelegate.h */,
 				28FDAA272200566B005FE326 /* AppDelegate.m */,
 				28FDAA2F22005671005FE326 /* Assets.xcassets */,
-				28FDAA3422005671005FE326 /* Info.plist */,
-				28FDAA3122005671005FE326 /* LaunchScreen.storyboard */,
-				28FDAA3522005671005FE326 /* main.m */,
-				28FDAA2C2200566B005FE326 /* Main.storyboard */,
+				28FDAA3F22005ABC005FE326 /* BrownTableViewCell.h */,
+				28FDAA4022005ABC005FE326 /* BrownTableViewCell.m */,
 				28FDAA4522009E27005FE326 /* DetailViewController.h */,
 				28FDAA4622009E27005FE326 /* DetailViewController.m */,
 				28FDAA4222007E15005FE326 /* Horse.h */,
 				28FDAA4322007E15005FE326 /* Horse.m */,
+				28FDAA3422005671005FE326 /* Info.plist */,
+				28FDAA3122005671005FE326 /* LaunchScreen.storyboard */,
+				28FDAA3522005671005FE326 /* main.m */,
+				28FDAA2C2200566B005FE326 /* Main.storyboard */,
 				28FDAA3C220056F5005FE326 /* MulticlassTableViewController.h */,
 				28FDAA3D220056F5005FE326 /* MulticlassTableViewController.m */,
-				28FDAA3F22005ABC005FE326 /* BrownTableViewCell.h */,
-				28FDAA4022005ABC005FE326 /* BrownTableViewCell.m */,
+				28FDAA482201A588005FE326 /* SwitchTableViewCell.h */,
+				28FDAA492201A588005FE326 /* SwitchTableViewCell.m */,
 			);
 			path = MulticlassTable;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 				28FDAA4122005ABC005FE326 /* BrownTableViewCell.m in Sources */,
 				28FDAA282200566B005FE326 /* AppDelegate.m in Sources */,
 				28FDAA4722009E27005FE326 /* DetailViewController.m in Sources */,
+				28FDAA4A2201A588005FE326 /* SwitchTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

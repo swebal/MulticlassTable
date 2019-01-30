@@ -10,14 +10,26 @@
 #import "BrownTableViewCell.h"
 #import "Horse.h"
 #import "DetailViewController.h"
+#import "SwitchTableViewCell.h"
 
-@interface MulticlassTableViewController ()
+@interface MulticlassTableViewController () <SwitchTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *horses;
 
 @end
 
 @implementation MulticlassTableViewController
+
+- (void)switchChangedForRow:(NSInteger)rowIndex {
+    NSLog(@"En rad tryckte på: %ld", rowIndex);
+    Horse *h = _horses[rowIndex];
+    if (h.horseStatus == HorseStatusAlive) {
+        h.horseStatus = HorseStatusDead;
+    } else {
+        h.horseStatus = HorseStatusAlive;
+    }
+    [self saveHorses];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,20 +84,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    BrownTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
     Horse *h = _horses[indexPath.row];
-    [cell configureWithHorse:h];
     
-    return cell;
+    if (indexPath.row % 2 == 0) { // Jämna rader
+        BrownTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
+        [cell configureWithHorse:h];
+        return cell;
+    } else { // Ojämna rader
+        
+        
+        SwitchTableViewCell *sw = [tableView dequeueReusableCellWithIdentifier:@"switch" forIndexPath:indexPath];
+        [sw configureForHorse:h];
+        sw.switchDelegate = self;
+        // CELL.
+        // OBJECT.PROPERTY = OBJECT;
+        sw.tag = indexPath.row;
+        return sw;
+        
+        
+    }
 }
 
 #pragma mark - Prepare for transition
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-    DetailViewController *detail = (DetailViewController *)segue.destinationViewController;
-    detail.selectedHorse = _horses[selectedIndexPath.row];
+    if ([segue.identifier isEqualToString:@"detailSegue"]) {
+        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+        DetailViewController *detail = (DetailViewController *)segue.destinationViewController;
+        Horse *selectedHorse = (Horse *)[_horses objectAtIndex:selectedIndexPath.row]; // Samma som: _horses[selectedIndexPath.row];
+        detail.selectedHorse = selectedHorse;
+    }
 }
 
 @end
