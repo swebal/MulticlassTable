@@ -13,11 +13,15 @@
 #import "SwitchTableViewCell.h"
 #import "SwitchTableViewCellDelegate.h"
 
+#define kHorseArrayDataKey          @"data005"
+#define kNumberOfHorses             50
+
 @interface MulticlassTableViewController () <SwitchTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *horses;
 @property (nonatomic, strong) NSMutableArray *searchResult;
-
+@property (nonatomic, strong) NSString *searchString;
+@property (nonatomic, assign) BOOL sortAscending; // Falsk default
 @end
 
 @implementation MulticlassTableViewController
@@ -46,6 +50,12 @@
     if ([self loadHorses]) {
         [self saveHorses];
     }
+    [self filterWithString:nil];
+    
+    // Skapar en knapp för vår navigation item!
+    
+    UIBarButtonItem *knapp = [[UIBarButtonItem alloc] initWithTitle:@"Sort" style:(UIBarButtonItemStylePlain) target:self action:@selector(sortHorses)];
+    self.navigationItem.rightBarButtonItem = knapp;
 }
 
 - (void)saveHorses {
@@ -60,12 +70,12 @@
         [horseDictionaries addObject:horseData];
     }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:horseDictionaries forKey:@"horseDataArray"];
+    [defaults setObject:horseDictionaries forKey:kHorseArrayDataKey];
 }
 
 - (BOOL)loadHorses {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *savedHorses = [defaults arrayForKey:@"horseDataArray"];
+    NSArray *savedHorses = [defaults arrayForKey:kHorseArrayDataKey];
     self.horses = [NSMutableArray new];
     if (savedHorses) {
         for (NSDictionary *horseData in savedHorses) {
@@ -74,7 +84,7 @@
         }
         return false;
     } else {
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<kNumberOfHorses; i++) {
             Horse *h = [Horse randomHorse];
             [_horses addObject:h];
         }
@@ -82,7 +92,33 @@
     }
 }
 
+- (void)sortHorses {
+    _sortAscending = !_sortAscending;
+    [_searchResult sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        Horse *h1 = (Horse *)obj1;
+        Horse *h2 = (Horse *)obj2;
+        if (self.sortAscending) {
+            return [h1.horseName compare:h2.horseName];
+        }
+        return [h2.horseName compare:h1.horseName];
+    }];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor whiteColor];
+    
+    // Nedanstående skall ändras beroender på sökresultat
+    
+    BOOL allHorses = _searchResult.count == _horses.count;
+    label.text = allHorses ? @"All horsies" : [NSString stringWithFormat:@"Search result for \"%@\": %ld", _searchString, _searchResult.count];
+    
+    return label;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -92,21 +128,13 @@
 //    if (section == 0) {
 //        return 3;
 //    }
-    if (_searchResult.count > 0) {
-        return _searchResult.count;
-    }
-    return _horses.count;
+    return _searchResult.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    Horse *h = nil;
-    
-    if (_searchResult.count > 0) {
-        h = _searchResult[indexPath.row];
-    } else {
-        h = _horses[indexPath.row];
-    }
+    Horse *h = _searchResult[indexPath.row];
     
 //    if (indexPath.row % 2 == 0) { // 0%3=0, 1%3=1, 2%3=2, 3%3=0, 4%3=1, 5%3=2, 6%3=0
 //        BrownTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
@@ -142,14 +170,25 @@
     }
 }
 
-- (IBAction)searchTextChanged:(UITextField *)sender {
+#pragma mark - Search
+
+- (void)filterWithString:(NSString *)string {
+    self.searchString = string;
     [_searchResult removeAllObjects];
-    for (Horse *h in _horses) {
-        if ([h.horseName.lowercaseString containsString:sender.text.lowercaseString]) {
-            [_searchResult addObject:h];
+    if (string.length > 0) {
+        for (Horse *h in _horses) {
+            if ([h.horseName.lowercaseString containsString:string.lowercaseString]) {
+                [_searchResult addObject:h];
+            }
         }
+    } else {
+        [self.searchResult addObjectsFromArray:_horses];
     }
     [self.tableView reloadData];
+}
+
+- (IBAction)searchTextChanged:(UITextField *)sender {
+    [self filterWithString:sender.text];
 }
 
 - (IBAction)returnPressed:(id)sender {
