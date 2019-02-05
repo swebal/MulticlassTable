@@ -8,25 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Horse.h"
-
-@protocol SwitchTableViewCellDelegate <NSObject>
-
-- (void)switchChangedForRow:(NSInteger)rowIndex;
-
-@end
-
-
+#import "SwitchTableViewCellDelegate.h"
 
 @interface SwitchTableViewCell : UITableViewCell
 
 @property (assign) id<SwitchTableViewCellDelegate> switchDelegate;
-
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *statusSwitch;
 
 - (IBAction)switchValueChanged:(UISwitch *)sender;
 
 - (void)configureForHorse:(Horse *)horse;
-- (void)configureWithDictionary:(NSDictionary *)data;
+//- (void)configureWithDictionary:(NSDictionary *)data;
 
 @end

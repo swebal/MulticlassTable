@@ -13,9 +13,9 @@
 @implementation Horse
 
 + (Horse *)randomHorse {
-    Horse *h = [Horse new];
     int randomIndex = arc4random_uniform((int)names.count);
     NSString *randomName = names[randomIndex];
+    Horse *h = [Horse new];
     h.horseName = randomName;
     h.horseStatus = (HorseStatus)arc4random_uniform(2);
     return h;

@@ -10,4 +10,9 @@
 
 @interface MulticlassTableViewController : UITableViewController 
 
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+
+- (IBAction)searchTextChanged:(UITextField *)sender; // När texten i textfältet ändras
+- (IBAction)returnPressed:(id)sender; // När man trycker på retur-knappen på tangentbordet
+
 @end

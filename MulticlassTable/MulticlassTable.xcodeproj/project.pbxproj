@@ -38,6 +38,7 @@
 		28FDAA4622009E27005FE326 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		28FDAA482201A588005FE326 /* SwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
 		28FDAA492201A588005FE326 /* SwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
+		28FDAA4B220989DB005FE326 /* SwitchTableViewCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCellDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 				28FDAA3D220056F5005FE326 /* MulticlassTableViewController.m */,
 				28FDAA482201A588005FE326 /* SwitchTableViewCell.h */,
 				28FDAA492201A588005FE326 /* SwitchTableViewCell.m */,
+				28FDAA4B220989DB005FE326 /* SwitchTableViewCellDelegate.h */,
 			);
 			path = MulticlassTable;
 			sourceTree = "<group>";

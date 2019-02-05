@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    HorseStatusDead,
-    HorseStatusAlive
+    HorseStatusDead, // == 0 == false
+    HorseStatusAlive // == 1 == true
 } HorseStatus;
 
 @interface Horse : NSObject
